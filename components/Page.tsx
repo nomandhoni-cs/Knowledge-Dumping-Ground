@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/formatDate";
 import siteConfig from "@/data/siteConfig";
 import { Prose } from "@/components/Prose";
 import { cx } from "@/lib/utils";
+import Image from "next/image";
 
 interface PageProps {
   date?: string;
@@ -35,10 +36,11 @@ export const Page: React.FC<PageProps> = ({
         <meta property="og:title" content={metaTitle} />
         <meta name="description" content={metaDescription} />
         <meta name="og:description" content={metaDescription} />
-        <meta
+        {/* <meta
           property="og:image"
           content={`${siteConfig.siteUrl}${metaThumbnail}`}
-        />
+        /> */}
+        <meta property="og:image" content={metaThumbnail} />
       </Head>
       <header
         className={cx(
@@ -54,7 +56,8 @@ export const Page: React.FC<PageProps> = ({
             {formatDate(date)}
           </time>
         ) : null}
-        <h1 className="font-bold text-3xl">{title}</h1>
+        <h1 className="font-bold text-3xl pb-4">{title}</h1>
+        <Image src={metaThumbnail} alt={metaTitle} width={1280} height={720} />
         {description ? (
           <div className="mt-4">
             <Prose>
